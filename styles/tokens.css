@@ -1,0 +1,154 @@
+/* ---------------------------------------------------------------------------
+   GYMBUD · Design Tokens
+
+   The defaults are the "Steel & Lime" theme. Three alternate themes are
+   included — apply one by setting [data-theme="<name>"] on <html> or <body>.
+
+   Variables follow a flat naming convention so they map cleanly to:
+     • Tailwind theme.extend
+     • Style-Dictionary / W3C tokens
+     • CSS-in-JS theme objects
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* ── Color · semantic ─────────────────────────────────────────────── */
+  --gb-bg:            #EEE7DA;   /* page / canvas — warm cream */
+  --gb-paper:         #FFFFFF;   /* card / input surface */
+  --gb-paper-2:       #F5F0E5;   /* subtle card variant */
+  --gb-ink:           #111110;   /* primary text + primary button */
+  --gb-ink-2:         #1F1E1B;   /* slightly softer ink */
+  --gb-muted:         #6E665A;   /* secondary text / icons */
+  --gb-hair:          rgba(31, 30, 27, 0.08);   /* 1 px borders */
+  --gb-hair-strong:   rgba(31, 30, 27, 0.14);   /* 1 px focus borders */
+
+  /* Accent · "you" — lime */
+  --gb-accent:        #D6F23E;
+  --gb-accent-ink:    #161800;   /* text/icons placed on --gb-accent */
+  --gb-accent-soft:   #F1F8C2;   /* tinted background */
+
+  /* Accent · "your bud" — coral */
+  --gb-accent-2:      #FF6A47;
+  --gb-accent-2-ink:  #2A0A00;
+  --gb-accent-2-soft: #FFE0D4;
+
+  /* Activity tints — used as tile backgrounds. Pair with --gb-ink for text. */
+  --gb-tint-weight:   #E8E0CE;   /* weightlifting · stone */
+  --gb-tint-cali:     #D6F23E;   /* calisthenics  · lime */
+  --gb-tint-run:      #FFD7C2;   /* running       · peach */
+  --gb-tint-jog:      #E7E1D2;   /* jogging       · sand */
+  --gb-tint-walk:     #DCEEDD;   /* walking       · mint */
+  --gb-tint-boulder:  #FF6A47;   /* bouldering    · coral */
+  --gb-tint-swim:     #C8DEF2;   /* swimming      · sky */
+  --gb-tint-yoga:     #EBD7F2;   /* yoga          · orchid */
+
+  /* Status (use sparingly) */
+  --gb-success:       #2E8B4A;
+  --gb-danger:        #C0392B;
+  --gb-warning:       #D68B00;
+
+  /* ── Radius ───────────────────────────────────────────────────────── */
+  --gb-r-xs:    8px;     /* small chips, badges */
+  --gb-r-sm:    12px;    /* small inputs */
+  --gb-r-md:    16px;    /* inputs, list rows */
+  --gb-r-lg:    20px;    /* cards */
+  --gb-r-xl:    24px;    /* hero cards */
+  --gb-r-pill:  999px;   /* buttons, chips, tabs */
+
+  /* ── Spacing scale (4 px base) ────────────────────────────────────── */
+  --gb-s-1:   4px;
+  --gb-s-2:   8px;
+  --gb-s-3:   12px;
+  --gb-s-4:   16px;
+  --gb-s-5:   20px;
+  --gb-s-6:   24px;
+  --gb-s-8:   32px;
+  --gb-s-10:  40px;
+  --gb-s-12:  48px;
+
+  /* ── Sizing ───────────────────────────────────────────────────────── */
+  --gb-hit:        44px;   /* min tap target (iOS HIG) */
+  --gb-h-input:    56px;   /* input height */
+  --gb-h-btn-lg:   56px;
+  --gb-h-btn-md:   46px;
+  --gb-h-btn-sm:   38px;
+
+  /* ── Elevation ────────────────────────────────────────────────────── */
+  --gb-shadow-1:  0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --gb-shadow-2:  0 6px 16px -4px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --gb-shadow-3:  0 12px 36px -8px rgba(0, 0, 0, 0.18), 0 4px 10px rgba(0, 0, 0, 0.06);
+  --gb-ring:      0 0 0 2px var(--gb-ink);   /* focus ring */
+
+  /* ── Motion ───────────────────────────────────────────────────────── */
+  --gb-ease:        cubic-bezier(0.2, 0.7, 0.2, 1);
+  --gb-ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --gb-dur-1:       120ms;   /* press */
+  --gb-dur-2:       180ms;   /* hover / toggle */
+  --gb-dur-3:       280ms;   /* screen fade */
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Theme · Dusk Coral
+   Warm cream paper, coral primary, deep cobalt secondary. Reads as
+   premium-lifestyle; good for marketing surfaces.
+   ──────────────────────────────────────────────────────────────────── */
+[data-theme="dusk-coral"] {
+  --gb-bg:            #F4ECE4;
+  --gb-paper:         #FFFFFF;
+  --gb-ink:           #1B1A18;
+  --gb-muted:         #73685D;
+  --gb-hair:          rgba(27, 26, 24, 0.08);
+
+  --gb-accent:        #FF6A47;
+  --gb-accent-ink:    #2A0A00;
+  --gb-accent-soft:   #FFE0D4;
+
+  --gb-accent-2:      #0E2EFF;
+  --gb-accent-2-ink:  #FFFFFF;
+  --gb-accent-2-soft: #D6DCFF;
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Theme · Midnight Neon  (dark mode)
+   High-contrast charcoal with electric lime + hot pink accents.
+   ──────────────────────────────────────────────────────────────────── */
+[data-theme="midnight-neon"] {
+  --gb-bg:            #0E0E10;
+  --gb-paper:         #17171A;
+  --gb-paper-2:       #1F1F23;
+  --gb-ink:           #F4F2EC;
+  --gb-ink-2:         #FAFAF6;
+  --gb-muted:         #888378;
+  --gb-hair:          rgba(255, 255, 255, 0.10);
+  --gb-hair-strong:   rgba(255, 255, 255, 0.18);
+
+  --gb-accent:        #C6FF3D;
+  --gb-accent-ink:    #0E0E10;
+  --gb-accent-soft:   rgba(198, 255, 61, 0.16);
+
+  --gb-accent-2:      #FF3D8A;
+  --gb-accent-2-ink:  #0E0E10;
+  --gb-accent-2-soft: rgba(255, 61, 138, 0.16);
+
+  --gb-shadow-3:  0 12px 36px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Theme · Court Cobalt
+   Heritage athletic. Cobalt as the call-to-action with mustard
+   secondary. Reads more "performance" than "lifestyle".
+   ──────────────────────────────────────────────────────────────────── */
+[data-theme="court-cobalt"] {
+  --gb-bg:            #EDEDE6;
+  --gb-paper:         #FFFFFF;
+  --gb-ink:           #101015;
+  --gb-muted:         #5F5F69;
+  --gb-hair:          rgba(16, 16, 21, 0.08);
+
+  --gb-accent:        #1B3CFF;
+  --gb-accent-ink:    #F4F2EC;
+  --gb-accent-soft:   #D7DEFF;
+
+  --gb-accent-2:      #FFC83D;
+  --gb-accent-2-ink:  #1A1305;
+  --gb-accent-2-soft: #FFEEBF;
+}

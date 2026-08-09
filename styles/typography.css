@@ -1,0 +1,230 @@
+/* ---------------------------------------------------------------------------
+   GYMBUD · Typography
+   Three families, one role each.
+
+     Display   Bricolage Grotesque    (headings, hero numerals)
+     Body      Inter                  (everything text)
+     Mono      JetBrains Mono         (numerals, micro-labels, tickers)
+
+   --------------------------------------------------------------------------- */
+
+/*  Either keep the Google Fonts <link> in the <head> OR self-host
+   the WOFF2 files and remove the @import below. */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  --gb-font-display: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+  --gb-font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --gb-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale — line-heights chosen for both web & native parity */
+  --gb-fs-display-xxl: 84px;
+  --gb-lh-display-xxl: 0.86;
+  /* hero */
+  --gb-fs-display-xl: 56px;
+  --gb-lh-display-xl: 0.92;
+  /* screen title XL */
+  --gb-fs-display-lg: 36px;
+  --gb-lh-display-lg: 1.05;
+  /* screen title L */
+  --gb-fs-display-md: 28px;
+  --gb-lh-display-md: 1.05;
+  /* section title */
+  --gb-fs-display-sm: 22px;
+  --gb-lh-display-sm: 1.15;
+  /* card title */
+  --gb-fs-display-accent-lg: 32px;
+  --gb-fs-display-accent-xxl: 80px;
+
+  --gb-fs-body-lg: 17px;
+  --gb-lh-body-lg: 1.45;
+  --gb-fs-body: 15px;
+  --gb-lh-body: 1.45;
+  --gb-fs-body-sm: 13px;
+  --gb-lh-body-sm: 1.4;
+
+  --gb-fs-label: 11px;
+  /* mono uppercase */
+  --gb-fs-label-xl: 21px;
+  --gb-fs-caption: 12px;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--gb-font-body);
+  font-size: var(--gb-fs-body);
+  line-height: var(--gb-lh-body);
+  color: var(--gb-ink);
+  background: var(--gb-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Utility classes ───────────────────────────────────────────────── */
+/* ── Default Fonts ───────────────────────────────────────────────── */
+.gb-display {
+  font-family: var(--gb-font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 32;
+}
+
+.gb-display-xxl {
+  font-family: var(--gb-font-display);
+  font-weight: 800;
+  font-size: var(--gb-fs-display-xxl);
+  line-height: var(--gb-lh-display-xxl);
+  letter-spacing: -0.04em;
+  font-variation-settings: "opsz" 96;
+}
+
+.gb-display-xl {
+  font-family: var(--gb-font-display);
+  font-weight: 800;
+  font-size: var(--gb-fs-display-xl);
+  line-height: var(--gb-lh-display-xl);
+  letter-spacing: -0.03em;
+}
+
+.gb-display-lg {
+  font-family: var(--gb-font-display);
+  font-weight: 700;
+  font-size: var(--gb-fs-display-lg);
+  line-height: var(--gb-lh-display-lg);
+  letter-spacing: -0.025em;
+}
+
+.gb-display-md {
+  font-family: var(--gb-font-display);
+  font-weight: 800;
+  font-size: var(--gb-fs-display-md);
+  line-height: var(--gb-lh-display-md);
+  letter-spacing: -0.02em;
+}
+
+.gb-display-sm {
+  font-family: var(--gb-font-display);
+  font-weight: 700;
+  font-size: var(--gb-fs-display-sm);
+  line-height: var(--gb-lh-display-sm);
+  letter-spacing: -0.01em;
+}
+
+/* ── Accent Font ───────────────────────────────────────────────── */
+.gb-display-accent {
+  font-family: var(--gb-font-display);
+  color: var(--gb-accent);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 32;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
+}
+.gb-display-accent-lg {
+  font-family: var(--gb-font-display);
+  color: var(--gb-accent);
+  font-weight: 700;
+  font-size: var(--gb-fs-display-accent-lg);
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 32;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
+}
+.gb-display-accent-xxl {
+  font-family: var(--gb-font-display);
+  color: var(--gb-accent);
+  font-weight: 700;
+  font-size: var(--gb-fs-display-accent-xxl);
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 32;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
+}
+
+.gb-body-lg {
+  font-size: var(--gb-fs-body-lg);
+  line-height: var(--gb-lh-body-lg);
+}
+
+.gb-body {
+  font-size: var(--gb-fs-body);
+  line-height: var(--gb-lh-body);
+}
+
+.gb-body-sm {
+  font-size: var(--gb-fs-body-sm);
+  line-height: var(--gb-lh-body-sm);
+  color: var(--gb-muted);
+}
+
+/* Uppercase mono — the prototype's signature micro-label.
+   Reach for this for: section labels, step counters, distance/PR numerals. */
+.gb-label {
+  font-family: var(--gb-font-mono);
+  font-size: var(--gb-fs-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gb-muted);
+}
+
+.gb-label-xl {
+  font-family: var(--gb-font-mono);
+  font-size: var(--gb-fs-label-xl);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gb-muted);
+}
+
+.gb-mono {
+  font-family: var(--gb-font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* Headings — apply utility classes OR style raw tags below. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--gb-font-display);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--gb-fs-display-xl);
+  line-height: var(--gb-lh-display-xl);
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: var(--gb-fs-display-lg);
+  line-height: var(--gb-lh-display-lg);
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--gb-fs-display-md);
+  line-height: var(--gb-lh-display-md);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: var(--gb-fs-display-sm);
+  line-height: var(--gb-lh-display-sm);
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+/* Smaller body on small screens */
+@media (max-width: 480px) {
+  :root {
+    --gb-fs-display-xxl: 64px;
+    --gb-fs-display-xl: 44px;
+  }
+}

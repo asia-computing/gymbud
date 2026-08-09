@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>GYMBUD · Design System Preview</title>
+<meta name="viewport" content="width=1280, initial-scale=1" />
+<link rel="stylesheet" href="gymbud.css">
+<style>
+  /* The page chrome itself uses tokens — proving the stylesheets stand alone. */
+  body {
+    padding: 48px 56px 96px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  header { margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
+  header h1 { font-size: 56px; }
+  header h1 .dot { color: var(--gb-accent-2); }
+  header p { color: var(--gb-muted); max-width: 540px; margin: 8px 0 0; }
+
+  .theme-switch { display: flex; gap: 8px; }
+
+  section { margin-top: 56px; }
+  section > h3 { margin-bottom: 4px; }
+  section > .gb-label { margin-bottom: 24px; }
+
+  .grid { display: grid; gap: 16px; }
+  .grid--2 { grid-template-columns: 1fr 1fr; }
+  .grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--4 { grid-template-columns: repeat(4, 1fr); }
+  .grid--6 { grid-template-columns: repeat(6, 1fr); }
+
+  /* Swatch */
+  .sw { display: flex; flex-direction: column; gap: 8px; }
+  .sw__chip { height: 80px; border-radius: var(--gb-r-md); box-shadow: inset 0 0 0 1px var(--gb-hair); }
+  .sw__name { font-size: 13px; font-weight: 600; }
+  .sw__hex  { font-family: var(--gb-font-mono); font-size: 11px; color: var(--gb-muted); }
+
+  /* Spec row */
+  .spec { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--gb-hair); }
+  .spec:last-child { border-bottom: 0; }
+  .spec__name { font-family: var(--gb-font-mono); font-size: 12px; color: var(--gb-muted); }
+  .spec__demo { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+  .stack { display: flex; flex-direction: column; gap: 8px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+  /* Phone-like canvas — for context, not a full prototype */
+  .phone-demo {
+    width: 320px;
+    background: var(--gb-bg);
+    border-radius: 32px;
+    padding: 28px 20px;
+    box-shadow: inset 0 0 0 1px var(--gb-hair);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="gb-label">GYMBUD · Design System v1</div>
+      <h1 class="gb-display-xl">Style sheets<span class="dot">.</span></h1>
+      <p>Every component from the prototype, rendered against <code>gymbud.css</code> only. Switch themes with the buttons in preview.</p>
+    </div>
+    <div class="theme-switch">
+      <button class="gb-btn gb-btn--sm gb-btn--paper" data-theme="">Steel &amp; Lime</button>
+      <button class="gb-btn gb-btn--sm gb-btn--paper" data-theme="dusk-coral">Dusk Coral</button>
+      <button class="gb-btn gb-btn--sm gb-btn--paper" data-theme="midnight-neon">Midnight</button>
+      <button class="gb-btn gb-btn--sm gb-btn--paper" data-theme="court-cobalt">Cobalt</button>
+    </div>
+  </header>
+
+  <!-- COLORS -->
+  <section>
+    <div class="gb-label">01 · Color</div>
+    <h3 class="gb-display-md">Palette</h3>
+    <div class="grid grid--6" style="margin-top: 20px;">
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-bg)"></div><div class="sw__name">Background</div><div class="sw__hex">--gb-bg</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-paper)"></div><div class="sw__name">Paper</div><div class="sw__hex">--gb-paper</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-ink)"></div><div class="sw__name">Ink</div><div class="sw__hex">--gb-ink</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-muted)"></div><div class="sw__name">Muted</div><div class="sw__hex">--gb-muted</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-accent)"></div><div class="sw__name">Accent · you</div><div class="sw__hex">--gb-accent</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-accent-2)"></div><div class="sw__name">Accent · bud</div><div class="sw__hex">--gb-accent-2</div></div>
+    </div>
+
+    <h3 class="gb-display-sm" style="margin-top: 32px;">Activity tints</h3>
+    <div class="grid grid--4" style="margin-top: 16px;">
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-tint-weight)"></div><div class="sw__name">Weightlifting</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-tint-cali)"></div><div class="sw__name">Calisthenics</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-tint-run)"></div><div class="sw__name">Running</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-tint-jog)"></div><div class="sw__name">Jogging</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-tint-walk)"></div><div class="sw__name">Walking</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-tint-boulder)"></div><div class="sw__name">Bouldering</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-tint-swim)"></div><div class="sw__name">Swimming</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-tint-yoga)"></div><div class="sw__name">Yoga</div></div>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <section>
+    <div class="gb-label">02 · Type</div>
+    <h3 class="gb-display-md">Scale</h3>
+    <div style="margin-top: 20px;">
+      <div class="spec"><div class="spec__name">display-xxl / 84</div><div class="spec__demo"><span class="gb-display-xxl">Bud up.</span></div></div>
+      <div class="spec"><div class="spec__name">display-xl / 56</div><div class="spec__demo"><span class="gb-display-xl">Find your bud.</span></div></div>
+      <div class="spec"><div class="spec__name">display-lg / 36</div><div class="spec__demo"><span class="gb-display-lg">Create an account.</span></div></div>
+      <div class="spec"><div class="spec__name">display-md / 28</div><div class="spec__demo"><span class="gb-display-md">Discover</span></div></div>
+      <div class="spec"><div class="spec__name">display-sm / 22</div><div class="spec__demo"><span class="gb-display-sm">Asha P., 27</span></div></div>
+      <div class="spec"><div class="spec__name">body-lg / 17</div><div class="spec__demo"><span class="gb-body-lg">Continue with Google</span></div></div>
+      <div class="spec"><div class="spec__name">body / 15</div><div class="spec__demo"><span class="gb-body">Get matched with someone who shows up for the same workouts you do.</span></div></div>
+      <div class="spec"><div class="spec__name">body-sm / 13</div><div class="spec__demo"><span class="gb-body-sm">0.6 mi · Climb North · Bouldering</span></div></div>
+      <div class="spec"><div class="spec__name">label / 11 mono</div><div class="spec__demo"><span class="gb-label">EST. 2026 — FOR LIFTERS, RUNNERS &amp; FRIENDS</span></div></div>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section>
+    <div class="gb-label">03 · Buttons</div>
+    <h3 class="gb-display-md">Buttons</h3>
+    <div class="grid grid--2" style="margin-top: 20px; gap: 24px;">
+      <div class="stack">
+        <button class="gb-btn gb-btn--primary gb-btn--full">Continue</button>
+        <button class="gb-btn gb-btn--accent gb-btn--full">Bud up</button>
+        <button class="gb-btn gb-btn--ghost gb-btn--full">Skip for now</button>
+        <button class="gb-btn gb-btn--paper gb-btn--full">Continue with Google</button>
+      </div>
+      <div class="stack">
+        <div class="row">
+          <button class="gb-btn gb-btn--primary">Primary</button>
+          <button class="gb-btn gb-btn--primary gb-btn--md">Medium</button>
+          <button class="gb-btn gb-btn--primary gb-btn--sm">Small</button>
+        </div>
+        <div class="row">
+          <button class="gb-btn gb-btn--accent">Accent</button>
+          <button class="gb-btn gb-btn--accent-2">Accent 2</button>
+        </div>
+        <div class="row">
+          <button class="gb-icon-btn" aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="gb-icon-btn" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+          <button class="gb-icon-btn" aria-label="Filter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M7 12h10M10 19h4"/></svg></button>
+          <button class="gb-icon-btn gb-icon-btn--ghost" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6l-12 12"/></svg></button>
+        </div>
+        <div class="row">
+          <button class="gb-btn gb-btn--primary" disabled>Disabled</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INPUTS -->
+  <section>
+    <div class="gb-label">04 · Inputs</div>
+    <h3 class="gb-display-md">Forms</h3>
+    <div class="grid grid--2" style="margin-top: 20px; gap: 32px;">
+      <div>
+        <label class="gb-field-label">Email</label>
+        <div class="gb-input">
+          <input type="email" placeholder="email@domain.com">
+        </div>
+        <label class="gb-field-label" style="margin-top: 16px;">Location</label>
+        <div class="gb-input">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gb-muted)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.5 7-13a7 7 0 10-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <input type="text" placeholder="Brooklyn, NY">
+        </div>
+      </div>
+      <div>
+        <label class="gb-field-label">Verification code</label>
+        <div class="gb-otp">
+          <div class="gb-otp__cell">4</div>
+          <div class="gb-otp__cell">8</div>
+          <div class="gb-otp__cell">2</div>
+          <div class="gb-otp__cell gb-otp__cell--active"></div>
+          <div class="gb-otp__cell"></div>
+          <div class="gb-otp__cell"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS & CHIPS -->
+  <section>
+    <div class="gb-label">05 · Tabs &amp; Chips</div>
+    <h3 class="gb-display-md">Selection</h3>
+    <div class="grid grid--2" style="margin-top: 20px; gap: 32px;">
+      <div class="stack">
+        <div class="gb-tabs gb-tabs--accent2">
+          <button class="gb-tab" aria-selected="true">You</button>
+          <button class="gb-tab" aria-selected="false">Your bud</button>
+        </div>
+        <div class="gb-tabs">
+          <button class="gb-tab" aria-selected="false">Following</button>
+          <button class="gb-tab" aria-selected="true">For you</button>
+          <button class="gb-tab" aria-selected="false">Favorites</button>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="row">
+          <button class="gb-chip" aria-pressed="true">Build strength</button>
+          <button class="gb-chip" aria-pressed="false">Lose weight</button>
+          <button class="gb-chip" aria-pressed="true">Stay consistent</button>
+          <button class="gb-chip" aria-pressed="false">Have fun</button>
+        </div>
+        <div class="row">
+          <button class="gb-chip gb-chip--accent" aria-pressed="true">English</button>
+          <button class="gb-chip" aria-pressed="false">Spanish</button>
+          <button class="gb-chip" aria-pressed="false">French</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section>
+    <div class="gb-label">06 · Cards</div>
+    <h3 class="gb-display-md">Cards</h3>
+    <div class="grid grid--3" style="margin-top: 20px;">
+      <div class="gb-card gb-card--lg">
+        <div class="row" style="gap: 12px;">
+          <div class="gb-avatar" style="background: var(--gb-tint-run)">AP</div>
+          <div>
+            <div class="gb-display-sm">Asha P., 27</div>
+            <div class="gb-body-sm">0.6 mi · Bouldering</div>
+          </div>
+        </div>
+        <p class="gb-body" style="margin: 12px 0 12px;">Looking for a v4 grind partner this week.</p>
+        <button class="gb-btn gb-btn--primary gb-btn--md gb-btn--full">Bud up</button>
+      </div>
+
+      <div class="gb-card gb-card--lg gb-card--ink">
+        <div class="gb-label" style="color: rgba(255,255,255,0.6)">Top match</div>
+        <div class="gb-display-sm" style="margin-top: 8px;">Diego R., 31</div>
+        <div class="gb-body-sm" style="color: rgba(255,255,255,0.65)">1.2 mi · Iron Foundry</div>
+        <div class="row" style="margin-top: 14px;">
+          <span class="gb-badge gb-badge--accent"><span class="gb-mono">87%</span> match</span>
+        </div>
+      </div>
+
+      <div class="gb-card gb-card--lg gb-card--accent">
+        <div class="gb-label" style="color: var(--gb-accent-ink); opacity: 0.6">You're matched</div>
+        <div class="gb-display-md" style="margin-top: 8px;">Bud up.</div>
+        <p class="gb-body" style="margin-top: 8px;">Send the first message and lock in a session.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITY TILES -->
+  <section>
+    <div class="gb-label">07 · Activity tiles</div>
+    <h3 class="gb-display-md">Tiles</h3>
+    <div class="grid grid--4" style="margin-top: 20px;">
+      <button class="gb-tile gb-tile--weight">
+        <span class="gb-tile__index">01</span>
+        <span class="gb-tile__title">Weightlifting</span>
+      </button>
+      <button class="gb-tile gb-tile--cali" aria-pressed="true">
+        <span class="gb-tile__index">02</span>
+        <span class="gb-tile__title">Calisthenics</span>
+      </button>
+      <button class="gb-tile gb-tile--run">
+        <span class="gb-tile__index">03</span>
+        <span class="gb-tile__title">Running</span>
+      </button>
+      <button class="gb-tile gb-tile--boulder" aria-pressed="true">
+        <span class="gb-tile__index">06</span>
+        <span class="gb-tile__title">Bouldering</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- BADGES -->
+  <section>
+    <div class="gb-label">08 · Badges</div>
+    <h3 class="gb-display-md">Micro</h3>
+    <div class="row" style="margin-top: 20px;">
+      <span class="gb-badge">0.6 mi</span>
+      <span class="gb-badge gb-badge--ink">v4 +</span>
+      <span class="gb-badge gb-badge--accent"><span class="gb-mono">92%</span> match</span>
+      <span class="gb-badge">Tue · Thu · Sat</span>
+    </div>
+  </section>
+
+  <!-- BOTTOM NAV -->
+  <section>
+    <div class="gb-label">09 · Bottom Nav</div>
+    <h3 class="gb-display-md">Navigation</h3>
+    <div style="position: relative; height: 100px; background: var(--gb-bg); border-radius: 24px; margin-top: 20px; box-shadow: inset 0 0 0 1px var(--gb-hair);">
+      <nav class="gb-bottomnav" style="position: absolute;">
+        <button class="gb-bottomnav__item" aria-current="page">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg>
+          Discover
+        </button>
+        <button class="gb-bottomnav__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c1-3.5 3.5-5.5 7-5.5s6 2 7 5.5"/></svg>
+          Buddies
+        </button>
+        <button class="gb-bottomnav__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.5 7-13a7 7 0 10-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Gyms
+        </button>
+        <button class="gb-bottomnav__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 11-3.5-6.6L21 5l-1 3.5A8 8 0 0121 12z"/></svg>
+          Chat
+        </button>
+        <button class="gb-bottomnav__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+          Profile
+        </button>
+      </nav>
+    </div>
+  </section>
+
+  <!-- RADIUS / SPACING -->
+  <section>
+    <div class="gb-label">10 · Geometry</div>
+    <h3 class="gb-display-md">Radius &amp; Spacing</h3>
+    <div class="grid grid--6" style="margin-top: 20px;">
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-paper); border-radius: var(--gb-r-xs);"></div><div class="sw__name">xs · 8</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-paper); border-radius: var(--gb-r-sm);"></div><div class="sw__name">sm · 12</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-paper); border-radius: var(--gb-r-md);"></div><div class="sw__name">md · 16</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-paper); border-radius: var(--gb-r-lg);"></div><div class="sw__name">lg · 20</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-paper); border-radius: var(--gb-r-xl);"></div><div class="sw__name">xl · 24</div></div>
+      <div class="sw"><div class="sw__chip" style="background: var(--gb-paper); border-radius: var(--gb-r-pill);"></div><div class="sw__name">pill</div></div>
+    </div>
+  </section>
+
+  <script>
+    // Theme switcher
+    document.querySelectorAll('[data-theme]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const t = btn.dataset.theme;
+        if (t) document.documentElement.setAttribute('data-theme', t);
+        else   document.documentElement.removeAttribute('data-theme');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "gymbud-website",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": [
+    "app/backend",
+    "app/frontend",
+    "app/mobile",
+    "website",
+    "packages/*"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "dev:backend": "npm run dev --workspace app/backend",
+    "dev:frontend": "npm run dev --workspace app/frontend",
+    "dev:mobile": "npm run start --workspace app/mobile",
+    "dev:website": "npm run dev --workspace website",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

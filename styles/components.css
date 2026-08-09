@@ -1,0 +1,404 @@
+/* ---------------------------------------------------------------------------
+   GYMBUD · Components
+   Plain CSS for the core building blocks the prototype uses. 
+
+     Buttons   .gb-btn  (variants: primary / accent / ghost / paper)
+     Inputs    .gb-input  .gb-otp
+     Chips     .gb-chip  (toggleable multi-select)
+     Tabs      .gb-tabs / .gb-tab    .gb-tabs--accent2
+     Cards     .gb-card  .gb-card--ink  .gb-card--accent
+     Badge     .gb-badge
+     Avatar    .gb-avatar
+     Tile      .gb-tile (activity, with striped texture)
+     Layout    .gb-screen  .gb-screen-header  .gb-section-head
+   --------------------------------------------------------------------------- */
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+.gb-btn {
+  appearance: none;
+  border: 0;
+  border-radius: var(--gb-r-pill);
+  height: var(--gb-h-btn-lg);
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--gb-font-body);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: transform var(--gb-dur-1) var(--gb-ease),
+              background-color var(--gb-dur-2) var(--gb-ease),
+              box-shadow var(--gb-dur-2) var(--gb-ease);
+  user-select: none;
+  white-space: nowrap;
+}
+.gb-btn:active     { transform: scale(0.98); }
+.gb-btn:disabled   { opacity: 0.4; pointer-events: none; }
+.gb-btn:focus-visible { outline: none; box-shadow: var(--gb-ring); }
+.gb-btn--full      { width: 100%; }
+
+.gb-btn--primary   { background: var(--gb-ink); color: #FAFAF6; }
+.gb-btn--accent    { background: var(--gb-accent); color: var(--gb-accent-ink); }
+.gb-btn--accent-2  { background: var(--gb-accent-2); color: var(--gb-accent-2-ink); }
+.gb-btn--ghost     { background: transparent; color: var(--gb-ink); box-shadow: inset 0 0 0 1.5px var(--gb-ink); }
+.gb-btn--paper     { background: var(--gb-paper); color: var(--gb-ink); box-shadow: inset 0 0 0 1px var(--gb-hair); }
+
+.gb-btn--md        { height: var(--gb-h-btn-md); font-size: 15px; padding: 0 18px; }
+.gb-btn--sm        { height: var(--gb-h-btn-sm); font-size: 14px; padding: 0 14px; }
+
+/* Icon-only round button (44 hit target) */
+.gb-icon-btn {
+  width: var(--gb-hit);
+  height: var(--gb-hit);
+  border: 0;
+  border-radius: var(--gb-r-pill);
+  background: var(--gb-paper);
+  box-shadow: inset 0 0 0 1px var(--gb-hair);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gb-ink);
+  transition: transform var(--gb-dur-1) var(--gb-ease);
+}
+.gb-icon-btn:active { transform: scale(0.94); }
+.gb-icon-btn--ghost { background: transparent; box-shadow: none; }
+
+/* ── Inputs ──────────────────────────────────────────────────────────── */
+.gb-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: var(--gb-h-input);
+  padding: 0 18px;
+  border-radius: var(--gb-r-md);
+  background: var(--gb-paper);
+  box-shadow: inset 0 0 0 1px var(--gb-hair);
+  transition: box-shadow var(--gb-dur-2) var(--gb-ease);
+}
+.gb-input:focus-within { box-shadow: inset 0 0 0 2px var(--gb-ink); }
+.gb-input > input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  color: var(--gb-ink);
+  font-size: 16px; /* prevents iOS zoom-on-focus */
+}
+.gb-input > input::placeholder { color: var(--gb-muted); }
+
+.gb-field-label {
+  font-family: var(--gb-font-mono);
+  font-size: var(--gb-fs-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gb-muted);
+  margin-bottom: var(--gb-s-2);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* OTP cell — make a wrapper .gb-otp and N children .gb-otp__cell */
+.gb-otp {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--gb-s-2);
+}
+.gb-otp__cell {
+  height: 64px;
+  border-radius: var(--gb-r-md);
+  background: var(--gb-paper);
+  box-shadow: inset 0 0 0 1px var(--gb-hair);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--gb-font-display);
+  font-size: 28px;
+  font-weight: 700;
+}
+.gb-otp__cell--active { box-shadow: inset 0 0 0 2px var(--gb-ink); }
+
+/* ── Chips (toggleable pill) ─────────────────────────────────────────── */
+.gb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--gb-r-pill);
+  background: var(--gb-paper);
+  box-shadow: inset 0 0 0 1px var(--gb-hair);
+  color: var(--gb-ink);
+  font-family: var(--gb-font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--gb-dur-2) var(--gb-ease),
+              color var(--gb-dur-2) var(--gb-ease),
+              box-shadow var(--gb-dur-2) var(--gb-ease);
+}
+.gb-chip[aria-pressed="true"],
+.gb-chip--on {
+  background: var(--gb-ink);
+  color: #FAFAF6;
+  box-shadow: none;
+}
+.gb-chip--accent[aria-pressed="true"] {
+  background: var(--gb-accent);
+  color: var(--gb-accent-ink);
+}
+
+/* ── Segmented Tabs (You / Your bud) ─────────────────────────────────── */
+.gb-tabs {
+  display: flex;
+  padding: 4px;
+  border-radius: var(--gb-r-pill);
+  background: var(--gb-paper);
+  box-shadow: inset 0 0 0 1px var(--gb-hair);
+}
+.gb-tab {
+  flex: 1;
+  height: 42px;
+  border: 0;
+  border-radius: var(--gb-r-pill);
+  background: transparent;
+  color: var(--gb-ink);
+  font: 600 14px var(--gb-font-body);
+  cursor: pointer;
+  transition: all var(--gb-dur-2) var(--gb-ease);
+}
+.gb-tab[aria-selected="true"] {
+  background: var(--gb-ink);
+  color: #FAFAF6;
+}
+/* The "You / Your bud" pattern: second tab uses coral when selected. */
+.gb-tabs--accent2 .gb-tab[aria-selected="true"]:nth-child(2) {
+  background: var(--gb-accent-2);
+  color: var(--gb-accent-2-ink);
+}
+
+/* Horizontally-scrolling tab strip for feeds */
+.gb-tabstrip { display: flex; gap: 6px; overflow-x: auto; padding: 0 var(--gb-s-5); margin-inline: calc(-1 * var(--gb-s-5)); }
+.gb-tabstrip::-webkit-scrollbar { display: none; }
+.gb-tabstrip { scrollbar-width: none; }
+.gb-tabstrip > button {
+  flex-shrink: 0; height: 36px; padding: 0 16px; border: 0; border-radius: var(--gb-r-pill);
+  background: transparent; color: var(--gb-ink); cursor: pointer;
+  box-shadow: inset 0 0 0 1px var(--gb-hair);
+  font: 600 14px var(--gb-font-body);
+}
+.gb-tabstrip > button[aria-selected="true"] {
+  background: var(--gb-ink); color: #FAFAF6; box-shadow: none;
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────── */
+.gb-card {
+  background: var(--gb-paper);
+  border-radius: var(--gb-r-lg);
+  padding: var(--gb-s-4);
+  box-shadow: inset 0 0 0 1px var(--gb-hair);
+}
+.gb-card--lg { border-radius: var(--gb-r-xl); padding: 18px; }
+.gb-card--ink {
+  background: var(--gb-ink);
+  color: #FAFAF6;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+}
+.gb-card--accent {
+  background: var(--gb-accent);
+  color: var(--gb-accent-ink);
+  box-shadow: none;
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────── */
+.gb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--gb-r-pill);
+  background: var(--gb-bg);
+  color: var(--gb-ink);
+  font-family: var(--gb-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.gb-badge--ink    { background: var(--gb-ink); color: #FAFAF6; }
+.gb-badge--accent { background: var(--gb-accent); color: var(--gb-accent-ink); }
+
+/* ── Avatar ──────────────────────────────────────────────────────────── */
+.gb-avatar {
+  width: 48px; height: 48px;
+  border-radius: var(--gb-r-pill);
+  background: #CFC6B5;
+  color: var(--gb-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--gb-font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+  flex-shrink: 0;
+}
+.gb-avatar--sm { width: 36px; height: 36px; font-size: 12px; }
+.gb-avatar--lg { width: 72px; height: 72px; font-size: 24px; }
+
+/* ── Activity Tile (multi-select; striped texture) ───────────────────── */
+.gb-tile {
+  position: relative;
+  height: 132px;
+  border: 0;
+  border-radius: var(--gb-r-lg);
+  padding: 14px;
+  text-align: left;
+  background: var(--gb-tint-weight);
+  color: var(--gb-ink);
+  box-shadow: inset 0 0 0 1px var(--gb-hair);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow var(--gb-dur-2) var(--gb-ease),
+              transform var(--gb-dur-1) var(--gb-ease);
+}
+.gb-tile:active { transform: scale(0.98); }
+.gb-tile[aria-pressed="true"] {
+  box-shadow: 0 0 0 2.5px var(--gb-ink), 0 12px 24px -10px rgba(0,0,0,0.2);
+}
+.gb-tile__index {
+  font-family: var(--gb-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  opacity: 0.55;
+}
+.gb-tile__title {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  font-family: var(--gb-font-display);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.gb-tile__sub {
+  position: absolute;
+  left: 14px;
+  bottom: -2px; /* place under title via JS or override */
+  font-size: 12px;
+  color: var(--gb-muted);
+}
+/* Striped texture via repeating gradient (no SVG) */
+.gb-tile::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(31, 30, 27, 0.08) 0 1px,
+    transparent 1px 6px
+  );
+  pointer-events: none;
+}
+/* Activity tints — chain on .gb-tile */
+.gb-tile--weight  { background: var(--gb-tint-weight); }
+.gb-tile--cali    { background: var(--gb-tint-cali); }
+.gb-tile--run     { background: var(--gb-tint-run); }
+.gb-tile--jog     { background: var(--gb-tint-jog); }
+.gb-tile--walk    { background: var(--gb-tint-walk); }
+.gb-tile--boulder { background: var(--gb-tint-boulder); }
+.gb-tile--swim    { background: var(--gb-tint-swim); }
+.gb-tile--yoga    { background: var(--gb-tint-yoga); }
+
+/* ── Layout primitives ───────────────────────────────────────────────── */
+.gb-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 70px 24px 28px;
+  background: var(--gb-bg);
+  color: var(--gb-ink);
+}
+.gb-screen-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.gb-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* ── Bottom Nav ──────────────────────────────────────────────────────── */
+.gb-bottomnav {
+  position: absolute;
+  left: 12px; right: 12px; bottom: 18px;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: var(--gb-shadow-3), inset 0 0 0 1px rgba(0,0,0,0.06);
+  border-radius: 28px;
+  padding: 8px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+}
+.gb-bottomnav__item {
+  border: 0;
+  background: transparent;
+  color: var(--gb-ink);
+  border-radius: 22px;
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: all var(--gb-dur-2) var(--gb-ease);
+  font: 600 10px var(--gb-font-body);
+  letter-spacing: 0.02em;
+}
+.gb-bottomnav__item[aria-current="page"] {
+  background: var(--gb-ink);
+  color: #FAFAF6;
+}
+
+/* ── Map marker pill (gym pin) ───────────────────────────────────────── */
+.gb-marker {
+  background: var(--gb-ink);
+  color: #FAFAF6;
+  border: 0;
+  border-radius: var(--gb-r-pill);
+  padding: 4px 10px 5px;
+  font-family: var(--gb-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.gb-marker--on { background: var(--gb-accent); color: var(--gb-accent-ink); }
+
+/* ── Utility: hide scrollbars on scrollable rails ─────────────────────── */
+.gb-scroll::-webkit-scrollbar { display: none; }
+.gb-scroll { scrollbar-width: none; }
