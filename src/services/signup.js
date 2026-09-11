@@ -27,7 +27,7 @@ export async function submitSignup({ email, source = "teaser" }) {
   const address = email.trim().toLowerCase()
 
   if (!isValidEmail(address)) {
-    throw new SignupError("That email doesn't look right.")
+    throw new SignupError("That email doesn't look quite right.")
   }
 
   if (!ENDPOINT) {
@@ -51,7 +51,7 @@ export async function submitSignup({ email, source = "teaser" }) {
   }
 
   if (!response.ok) {
-    throw new SignupError("Something went wrong on our end. Try again in a moment.")
+    throw new SignupError("Something went wrong. Try again in a moment.")
   }
 
   // Apps Script answers with JSON; a non-JSON body means the deployment is
@@ -60,7 +60,7 @@ export async function submitSignup({ email, source = "teaser" }) {
   try {
     result = await response.json()
   } catch {
-    throw new SignupError("Something went wrong on our end. Try again in a moment.")
+    throw new SignupError("Something went wrong. Try again in a moment.")
   }
 
   if (result.status !== "ok") {

@@ -1,35 +1,22 @@
-import { Flex, Text } from "@chakra-ui/react"
+import { Text } from "@chakra-ui/react"
 
 /**
- * "Gym·Bud" lockup. The coral half carries the "your bud" half of the accent
- * contract, so it keeps its own colour rather than inheriting the heading's.
+ * The small "GYMBUD" mark — the app's own screen-header treatment
+ * (`SignInScreen` in the app's `src/screens/screens.jsx`): display face,
+ * 800, 22 px, -0.02em. Set in ink, not accent; the lime belongs to the
+ * "Bud" of the headline.
  */
-export function Wordmark({ size = "xxl" }) {
-  const fontSize = size === "xxl" ? "gbDisplayXxl" : "gbDisplayXl"
-
+export function Wordmark() {
   return (
-    <Flex as="h1" align="baseline" gap="0.08em" lineHeight="0.86">
-      <Text
-        as="span"
-        fontFamily="display"
-        fontWeight="800"
-        fontSize={fontSize}
-        letterSpacing="-0.04em"
-        css={{ fontVariationSettings: '"opsz" 96' }}
-      >
-        Gym
-      </Text>
-      <Text
-        as="span"
-        fontFamily="display"
-        fontWeight="700"
-        fontSize={fontSize}
-        color="gb.accent2"
-        letterSpacing="-0.04em"
-        css={{ fontVariationSettings: '"opsz" 96' }}
-      >
-        Bud
-      </Text>
-    </Flex>
+    <Text
+      as="span"
+      fontFamily="display"
+      fontWeight="800"
+      fontSize="22px"
+      letterSpacing="-0.02em"
+      css={{ fontVariationSettings: '"opsz" 32' }}
+    >
+      GYMBUD
+    </Text>
   )
 }

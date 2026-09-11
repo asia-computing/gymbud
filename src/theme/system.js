@@ -22,13 +22,20 @@ const tokens = {
       muted: gb("muted"),
       hair: gb("hair"),
       hairStrong: gb("hair-strong"),
+      // Empty progress/streak segments. Heavier than a hairline: an unearned
+      // segment must still read as a segment.
+      track: gb("track"),
       // Accent contract: lime = "you", coral = "your bud". Never repurpose.
       accent: gb("accent"),
       accentInk: gb("accent-ink"),
       accentSoft: gb("accent-soft"),
       accent2: gb("accent-2"),
       accent2Ink: gb("accent-2-ink"),
+      // Coral as *text*. Coral itself is a fill only — it fails AA at small
+      // sizes. Same meaning, different contrast.
+      accent2Text: gb("accent-2-text"),
       accent2Soft: gb("accent-2-soft"),
+      onInk: gb("on-ink"),
       success: gb("success"),
       danger: gb("danger"),
     },
@@ -56,6 +63,10 @@ const tokens = {
     gb8: gb("s-8"),
     gb10: gb("s-10"),
     gb12: gb("s-12"),
+    gb16: gb("s-16"),
+    gb20: gb("s-20"),
+    gb24: gb("s-24"),
+    gb32: gb("s-32"),
   },
   sizes: {
     gbHit: gb("hit"),
@@ -75,6 +86,10 @@ const tokens = {
     gbDisplayLg: gb("fs-display-lg"),
     gbDisplayXl: gb("fs-display-xl"),
     gbDisplayXxl: gb("fs-display-xxl"),
+    // Web-only. The DS ships a fixed 84px hero for the phone; a page that
+    // spans a desktop viewport needs the headline to scale with it. Capped at
+    // 96px — past that the three lines stop reading as one block.
+    gbHero: { value: "clamp(4rem, 13vw, 6rem)" },
     gbDisplayAccentXxl: gb("fs-display-accent-xxl"),
   },
   durations: {
@@ -124,7 +139,10 @@ const buttonRecipe = defineRecipe({
   },
   variants: {
     variant: {
-      primary: { bg: "gb.ink", color: "#FAFAF6", _hover: { bg: "gb.ink2" } },
+      // The app's primary action is lime, not ink — see `Btn` in the app's
+      // `src/components/ui.jsx`. `ink` stays available as `invert`.
+      primary: { bg: "gb.accent", color: "gb.accentInk" },
+      invert: { bg: "gb.ink", color: "gb.onInk" },
       accent: { bg: "gb.accent", color: "gb.accentInk" },
       accent2: { bg: "gb.accent2", color: "gb.accent2Ink" },
       ghost: { bg: "transparent", color: "gb.ink", boxShadow: "inset 0 0 0 1.5px var(--gb-ink)" },
@@ -181,7 +199,36 @@ const config = defineConfig({
   cssVarsPrefix: "gbc",
   globalCss: {
     "html, body": { bg: "gb.bg", color: "gb.ink", fontFamily: "body", margin: 0 },
+    html: { scrollBehavior: "smooth" },
+    "@media (prefers-reduced-motion: reduce)": { html: { scrollBehavior: "auto" } },
+    "[id]": { scrollMarginTop: "gb16" },
+
+    /* Browser surfaces we did not draw but still ship: selection, caret and
+       scrollbar all default to chrome that belongs to no design system. */
     "*::selection": { bg: "gb.accent", color: "gb.accentInk" },
+    "input, textarea": { caretColor: "gb.accent" },
+    "*": { scrollbarColor: "var(--gb-hair-strong) transparent", scrollbarWidth: "thin" },
+    "::-webkit-scrollbar": { width: "10px", height: "10px" },
+    "::-webkit-scrollbar-thumb": {
+      bg: "gb.hairStrong",
+      borderRadius: "gbPill",
+      border: "3px solid transparent",
+      backgroundClip: "content-box",
+    },
+
+    /* The page's single authored moment: each headline line wipes up from its
+       own baseline, once, on load. Declared only under no-preference, so the
+       resting state is the visible one and reduced-motion gets no animation
+       rather than a hidden headline. */
+    "@media (prefers-reduced-motion: no-preference)": {
+      ".gb-rise": {
+        animation: "gb-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) backwards",
+      },
+    },
+    "@keyframes gb-rise": {
+      from: { opacity: 0, transform: "translateY(0.18em)", clipPath: "inset(105% 0 -10% 0)" },
+      to: { opacity: 1, transform: "translateY(0)", clipPath: "inset(-25% 0 -10% 0)" },
+    },
   },
   theme: {
     tokens,

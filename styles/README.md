@@ -37,13 +37,21 @@ If you don't have a CSS bundler, drop them in `<head>` directly:
 
 ## Themes
 
-Default theme is **Steel & Lime** (warm cream + lime + coral). Three alternates ship in the same file — swap by toggling an attribute on the document root:
+Default theme is **Steel & Lime** (warm cream + lime + coral). Four alternates
+ship in the same file — swap by toggling an attribute on the document root:
 
 ```html
+<html data-theme="dark">          <!-- THE SHIPPED APP DARK THEME -->
 <html data-theme="dusk-coral">    <!-- warm coral primary -->
-<html data-theme="midnight-neon"> <!-- dark mode, electric lime -->
+<html data-theme="midnight-neon"> <!-- an alternate dark exploration -->
 <html data-theme="court-cobalt">  <!-- cobalt primary, mustard accent -->
 ```
+
+**`dark` is the one that ships.** Its values are copied from the GYMBUD app's
+own `src/index.css`, and the attribute name and value are the ones the app
+stamps on `<html>` — so a surface themed `dark` here is the surface the user
+sees in the product. Keep the two in sync. `midnight-neon` is an unrelated
+dark-palette exploration (electric lime, hot pink) and is **not** the app.
 
 Themes only override semantic color tokens — everything else (typography, spacing, radii, motion) stays put.
 

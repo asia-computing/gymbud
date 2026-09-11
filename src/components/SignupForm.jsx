@@ -26,7 +26,7 @@ export function SignupForm({ source = "teaser" }) {
 
     if (!isValidEmail(email)) {
       setError(
-        email.trim() ? "That email doesn't look right." : "We'll need an email address.",
+        email.trim() ? "That email doesn't look quite right." : "Add your email first.",
       )
       return
     }
@@ -51,7 +51,6 @@ export function SignupForm({ source = "teaser" }) {
         borderRadius="gbLg"
         px="gb6"
         py="gb5"
-        maxW="480px"
         w="full"
         role="status"
       >
@@ -63,20 +62,23 @@ export function SignupForm({ source = "teaser" }) {
           textTransform="uppercase"
           color="gb.muted"
         >
-          You're on the list
+          You're in
         </Text>
         <Text fontFamily="display" fontWeight="700" fontSize="gbDisplaySm" letterSpacing="-0.01em">
-          See you at the gym.
+          See you in there.
         </Text>
+        {/* Second person, no new "we". The product speaks as "we" in exactly
+            three places and this is not one of them — see Brand Commitments
+            in PRODUCT.md. */}
         <Text fontSize="gbBodySm" color="gb.muted">
-          We'll email {email.trim().toLowerCase()} the moment GYMBUD opens up.
+          {email.trim().toLowerCase()} gets one email the day it opens. Nothing else.
         </Text>
       </Stack>
     )
   }
 
   return (
-    <Box as="form" onSubmit={handleSubmit} w="full" maxW="480px" noValidate>
+    <Box as="form" onSubmit={handleSubmit} w="full" noValidate>
       <Field.Root invalid={invalid} gap="gb2">
         <Field.Label
           htmlFor={fieldId}
@@ -87,7 +89,7 @@ export function SignupForm({ source = "teaser" }) {
           textTransform="uppercase"
           color="gb.muted"
         >
-          Get early access
+          Email
         </Field.Label>
 
         <Flex
@@ -129,7 +131,7 @@ export function SignupForm({ source = "teaser" }) {
           </Field.ErrorText>
         ) : (
           <Field.HelperText fontSize="gbBodySm" color="gb.muted">
-            One email at launch. No spam, no sharing.
+            One email when it opens. Nothing else, ever.
           </Field.HelperText>
         )}
       </Field.Root>
