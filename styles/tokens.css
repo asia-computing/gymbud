@@ -20,16 +20,28 @@
   --gb-muted:         #6E665A;   /* secondary text / icons */
   --gb-hair:          rgba(31, 30, 27, 0.08);   /* 1 px borders */
   --gb-hair-strong:   rgba(31, 30, 27, 0.14);   /* 1 px focus borders */
+  /* Empty progress and streak segments. Heavier than a hairline on purpose —
+     an unearned segment must still read as a segment. Never use --gb-hair. */
+  --gb-track:         rgba(35, 38, 20, 0.14);
 
   /* Accent · "you" — lime */
   --gb-accent:        #D6F23E;
   --gb-accent-ink:    #161800;   /* text/icons placed on --gb-accent */
   --gb-accent-soft:   #F1F8C2;   /* tinted background */
 
-  /* Accent · "your bud" — coral */
+  /* Accent · "your bud" — coral.
+     Coral is a FILL colour: it fails AA as small text on paper. Text uses the
+     darker --gb-accent-2-text sibling; the two carry the same meaning at
+     different contrast. */
   --gb-accent-2:      #FF6A47;
   --gb-accent-2-ink:  #2A0A00;
+  --gb-accent-2-text: #A8391F;
   --gb-accent-2-soft: #FFE0D4;
+
+  /* Outline on the accent display word ("Bud"). Lime on paper needs the ink
+     stroke to hold its edge; on a dark ground it does not. */
+  --gb-display-stroke: 2px var(--gb-ink);
+  --gb-on-ink:        #FAFAF6;   /* text on inverted --gb-ink surfaces */
 
   /* Activity tints — used as tile backgrounds. Pair with --gb-ink for text. */
   --gb-tint-weight:   #E8E0CE;   /* weightlifting · stone */
@@ -64,6 +76,12 @@
   --gb-s-8:   32px;
   --gb-s-10:  40px;
   --gb-s-12:  48px;
+  /* Page-scale steps. The phone app never needs past 48, but section rhythm
+     on a full page does — same 4px base, continued. */
+  --gb-s-16:  64px;
+  --gb-s-20:  80px;
+  --gb-s-24:  96px;
+  --gb-s-32:  128px;
 
   /* ── Sizing ───────────────────────────────────────────────────────── */
   --gb-hit:        44px;   /* min tap target (iOS HIG) */
@@ -87,6 +105,53 @@
 }
 
 /* ────────────────────────────────────────────────────────────────────
+   Theme · Dark  — THE SHIPPED APP DARK THEME
+
+   These values are copied verbatim from the GYMBUD app's own
+   `src/index.css` (`:root[data-theme="dark"]`), and the attribute name and
+   value match what the app stamps on <html>, so a surface themed `dark`
+   here is the same surface the user sees in the product.
+
+   Keep this block in sync with the app. `midnight-neon` below is a separate
+   exploration of a dark palette and is NOT what ships — do not confuse them.
+   ──────────────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --gb-bg:            #0A0A0B;
+  --gb-paper:         #18181B;
+  --gb-paper-2:       #1F1F23;
+  --gb-ink:           #F4F3EE;
+  --gb-ink-2:         #FFFFFF;
+  --gb-muted:         #9A958C;
+  --gb-hair:          #FFFFFF1F;
+  --gb-hair-strong:   rgba(255, 255, 255, 0.30);
+  --gb-track:         rgba(255, 255, 255, 0.16);
+  --gb-on-ink:        #0A0A0B;
+
+  /* Brand accents are identical in both themes — only the coral *text*
+     sibling lightens, to stay AA on the dark ground. */
+  --gb-accent:        #D6F23E;
+  --gb-accent-ink:    #161800;
+  --gb-accent-soft:   rgba(214, 242, 62, 0.16);
+
+  --gb-accent-2:      #FF6A47;
+  --gb-accent-2-ink:  #2A0A00;
+  --gb-accent-2-text: #FF9878;
+  --gb-accent-2-soft: rgba(255, 106, 71, 0.18);
+
+  /* The lime wordmark carries its own edge against near-black. */
+  --gb-display-stroke: 0 transparent;
+
+  /* The app has no error colour yet — the website's form validation is the
+     first surface to need one. Deliberately redder than coral so an error
+     never reads as the "your bud" accent. 7.1:1 on --gb-bg. */
+  --gb-danger:        #FF6B6B;
+  --gb-success:       #7BC98F;
+  --gb-warning:       #E8B33D;
+
+  --gb-shadow-3:  0 12px 36px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* ──────────────────────────────────────────────────────────────────
    Theme · Dusk Coral
    Warm cream paper, coral primary, deep cobalt secondary. Reads as
    premium-lifestyle; good for marketing surfaces.
