@@ -38,8 +38,8 @@ export function WeekStrip() {
       </Flex>
 
       <Text fontSize="gbBodySm" color="gb.muted" maxW="60ch">
-        {TARGET} sessions, {DAYS.length - TARGET} rest days, one week. Target met. This is the rule
-        drawn out, not anyone's real training.
+        {TARGET} sessions, {DAYS.length - TARGET} rest days, target met. An example of the rule,
+        not real training.
       </Text>
     </Stack>
   )

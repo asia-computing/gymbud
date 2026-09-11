@@ -86,13 +86,11 @@ export default function App() {
       <Section title="Knowing what to do was never the problem.">
         <Stack gap="gb5">
           <Body>
-            You know how to train. The plan was never the hard bit. The hard bit is Tuesday at 7pm,
-            when nobody notices whether you go. GYMBUD notices. It logs what you train, works out the
-            week you signed up for, and keeps you to it from the first time you open it.
+            The plan was never the hard bit. Tuesday at 7pm is. Nobody notices whether you go.
+            GYMBUD does.
           </Body>
           <Aside>
-            The scale starts at "Just starting" and that end of it is the point. No jargon, no
-            assumed reps, nobody making you feel behind on day one.
+            Starts at "Just starting". No jargon, no assumed reps, nobody making you feel behind.
           </Aside>
         </Stack>
       </Section>
@@ -100,13 +98,12 @@ export default function App() {
       <Section title="Miss Tuesday. Keep the streak.">
         <Stack gap="gb8">
           <Body>
-            Most apps break your streak the moment you take a day off. Yours counts weeks. Hit the
-            number of sessions you set yourself between Monday and Sunday and the week is yours,
-            however you spread it out. Rest is part of training, not a slip.
+            Most apps kill your streak the day you rest. Yours counts weeks. Hit your number by
+            Sunday and the week is yours.
           </Body>
           <WeekStrip />
           <Aside>
-            You set that number yourself, from the days you say you are free. Nobody picks it for you.
+            You set the number, from the days you say you're free.
           </Aside>
         </Stack>
       </Section>
@@ -139,14 +136,12 @@ export default function App() {
       <Section title="A bud you'll actually meet.">
         <Stack gap="gb8">
           <Body>
-            When you want a training partner, every match is scored out of 100. What you train and
-            when you are free are worth 60 of that, because someone who can never make your gym time
-            isn't a training partner. They're a notification.
+            Every match scores out of 100. Sixty of it is what you train and when you're free.
+            Anyone who can't make your gym time is just a notification.
           </Body>
           <MatchWeights />
           <Aside>
-            Overlap on one slot a week and you won't see them, so that score sits under the floor.
-            GYMBUD would rather show you nobody than somebody you'll never actually meet.
+            Overlap once a week and you'll never meet. GYMBUD shows you nobody instead.
           </Aside>
         </Stack>
       </Section>
@@ -154,13 +149,11 @@ export default function App() {
       <Section title="No made-up numbers.">
         <Stack gap="gb5">
           <Body>
-            Your streak, your rank, your progress: all of it comes from sessions you actually logged.
-            Nothing gets handed to you for opening the app, and no number shows up before you earned
-            it.
+            Your streak, your rank, your progress: all of it comes from sessions you logged.
+            Nothing for just opening the app.
           </Body>
           <Aside>
-            That is built in, not promised. Every figure is worked out from your session log rather
-            than saved next to it, so it can't drift away from what you actually did.
+            Every figure is worked out from your log. It can't drift from what you did.
           </Aside>
         </Stack>
       </Section>
